@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="jumbotron">
+  <h1>This page includes the FATF recommendations</h1>
+</div>
+
+<div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Recommendation</th>
+        <th scope="col">Notes</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>3</td>
+        <td>
+          Countries should criminalise money laundering on the basis of the Vienna Convention and the Palermo Convention. Countries should apply the crime of money laundering to all serious offences, with a view to including the widest range of predicate offences.
+        </td>
+        <td>This is Recommendation 3</td>
+        <td>
+          <button type="button" class="btn btn-primary">Update</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>
+          Countries should criminalise terrorist financing on the basis of the Terrorist Financing Convention, and should criminalise not only the financing of terrorist acts but also the financing of terrorist organisations and individual terrorists even in the absence of a link to a specific terrorist act or acts. Countries should ensure that such offences are designated as money laundering predicate offences.
+        </td>
+        <td>This is recommendation 5</td>
+        <td>
+          <button type="button" class="btn btn-primary">Update</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
