@@ -2,7 +2,6 @@ from flask import Flask
 
 app = Flask(__name__)
 
-from project import routes
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -19,3 +18,5 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 Migrate(app,db)
+
+from project import routes
