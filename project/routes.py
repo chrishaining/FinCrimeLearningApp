@@ -10,6 +10,6 @@ def home():
 def fatf_recommendations():
     return render_template('fatf_recommendations.html')
 
-@app.route('/abbreviations')
-def abbreviations():
-    return render_template('abbreviations.html')
+@app.route('/glossary')
+def glossary():
+    return render_template('glossary.html')
