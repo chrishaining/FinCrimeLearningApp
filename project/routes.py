@@ -1,5 +1,7 @@
 from project import app
+from project.models import Section, Recommendation
 from flask import render_template
+
 
 @app.route('/')
 def home():
@@ -8,7 +10,8 @@ def home():
 
 @app.route('/fatf_recommendations')
 def fatf_recommendations():
-    return render_template('fatf_recommendations.html')
+    recommendations = Recommendation.query.all()
+    return render_template('fatf_recommendations.html', recommendations=recommendations)
 
 @app.route('/glossary')
 def glossary():

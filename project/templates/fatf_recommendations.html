@@ -7,6 +7,32 @@
 </div>
 
 <div>
+    <table class="table table-striped">
+
+      <thead>
+        <th>Section</th>
+        <th>Recommendation Number</th>
+        <th>Recommendation Title</th>
+        <th>Recommendation Text</th>
+        </thead>
+
+        <tbody>
+          {% for recommendation in recommendations %}
+          <tr>
+            <td>{{recommendation.section.title}}</td>
+            <td>{{recommendation.id}}</td>
+            <td>{{recommendation.title}}</td>
+            <td>{{recommendation.text}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+
+      </table>
+
+</div>
+
+
+<!-- <div>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -46,6 +72,6 @@
       </tr>
     </tbody>
   </table>
-</div>
+</div> -->
 
 {% endblock %}
