@@ -23,14 +23,14 @@ class Recommendation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(128), nullable=False, index=True)
     text = db.Column(db.Text, nullable=False)
-    interpretation = db.Column(db.Text)
+    # interpretation = db.Column(db.Text)
     section = db.relationship(Section)
     section_id = db.Column(db.Integer, db.ForeignKey('sections.id'), nullable=False)
 
-    def __init__(self, title, text, interpretation, section_id):
+    def __init__(self, title, text, section_id):
         self.title = title
         self.text = text
-        self.interpretation = interpretation
+        # self.interpretation = interpretation
         self.section_id = section_id
 
     def __repr__(self):
