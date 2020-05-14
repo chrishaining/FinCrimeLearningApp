@@ -7,26 +7,25 @@
 </div>
 
 <div>
-    <table class="table table-striped table-bordered">
+    <table class="table table-striped table-bordered table-responsive">
 
       <thead>
         <th>Section</th>
-        <th>Recommendation Number</th>
-        <th>Recommendation Title</th>
-        <th>Recommendation Text</th>
+        <th>Number</th>
+        <th>Title</th>
+        <th>Text</th>
         </thead>
 
         <tbody>
           {% for recommendation in recommendations %}
           <tr>
-            <td>{{recommendation.section.title}}</td>
+            <td>{{recommendation.section.letter}}: {{recommendation.section.title}}</td>
             <td>{{recommendation.id}}</td>
             <td>{{recommendation.title}}</td>
             <td>{{recommendation.text}}</td>
             <td>
               <button type="button" class="btn btn-primary">Update</button>
-            </td>
-            <td>
+              <br><br>
               <button type="button" class="btn btn-primary">Delete</button>
             </td>
           </tr>
