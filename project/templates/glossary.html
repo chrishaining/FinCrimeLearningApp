@@ -26,14 +26,20 @@
         <td> {{ term.description }} </td>
         <td> {{ term.notes }} </td>
         <td>
-          <button type="button" class="btn btn-primary">Update</button>
+          <!-- <button type="button" class="btn btn-primary">Update</button> -->
+
+
+            <a class="btn btn-primary" href="{{ url_for('update_glossary_term', glossary_term_id=term.id) }}">Update</a>
+
+
+
         </td>
         <td>
           <button type="button" class="btn btn-primary">Delete</button>
         </td>
       </tr>
       {% endfor %}
-      
+
     </tbody>
   </table>
 </div>

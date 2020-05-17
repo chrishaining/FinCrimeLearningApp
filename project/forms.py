@@ -7,4 +7,4 @@ class GlossaryTermForm(FlaskForm):
     name = StringField('Name', validators = [DataRequired()])
     description = TextAreaField('Description')
     notes = TextAreaField('Notes')
-    submit = SubmitField('Submit the new term')
+    submit = SubmitField('Submit')
