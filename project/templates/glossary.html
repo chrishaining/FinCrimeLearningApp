@@ -6,29 +6,37 @@
   <h1>This page explains common FinCrime terms and concepts</h1>
 </div>
 
+<div class="container">
 
-<div>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Notes</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
+  <div class="row">
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
 
-      {% for term in glossaryTerms %}
-      <tr>
-        <td> {{ term.name }} </td>
-        <td> {{ term.description }} </td>
-        <td> {{ term.notes }} </td>
-        <td>
-          <a class="btn btn-primary" href="{{ url_for('update_glossary_term', glossary_term_id=term.id) }}">Update</a>
-        </td>
-        <td>
+  <div class="row">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Notes</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for term in glossaryTerms %}
+        <tr>
+          <td> {{ term.name }} </td>
+          <td> {{ term.description }} </td>
+          <td> {{ term.notes }} </td>
+          <td>
+            <a class="btn btn-primary" href="{{ url_for('update_glossary_term', glossary_term_id=term.id) }}">Update</a>
+          </td>
+          <td>
             <button type="button" class="btn btn-danger" data-toggle='modal' data-target="#del_modal{{term.id}}">Delete</button>
             <div class="modal" tabindex="-1" role="dialog" id="del_modal{{term.id}}">
               <div class="modal-dialog" role="document">
@@ -49,12 +57,13 @@
                 </div>
               </div>
             </div>
-        </td>
-      </tr>
-      {% endfor %}
+          </td>
+        </tr>
+        {% endfor %}
 
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 

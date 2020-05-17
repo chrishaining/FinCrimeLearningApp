@@ -2,6 +2,10 @@ h1 {
   color: blue
 }
 
+.row {
+  margin-bottom: 20px
+}
+
 .form-group {
   /* margin: 20px; */
   padding: 40px

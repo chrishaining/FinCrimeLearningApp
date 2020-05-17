@@ -3,80 +3,63 @@
 {% block content %}
 
 <div class="jumbotron">
-  <h1>This page includes the FATF recommendations</h1>
+  <h1>FATF Recommendations</h1>
 </div>
 
-<div>
+<div class="container">
+
+  <div class="row">
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+
+  <div class="row">
     <table class="table table-striped table-bordered table-responsive">
 
       <thead>
         <th>Section</th>
         <th>Number</th>
         <th>Title</th>
-        <th>Text</th>
-        </thead>
+      </thead>
 
-        <tbody>
-          {% for recommendation in recommendations %}
-          <tr>
-            <td>{{recommendation.section.letter}}: {{recommendation.section.title}}</td>
-            <td>{{recommendation.id}}</td>
-            <td>{{recommendation.title}}</td>
-            <td>{{recommendation.text}}</td>
-            <td>
-              <button type="button" class="btn btn-primary">Update</button>
-              <br><br>
-              <button type="button" class="btn btn-primary">Delete</button>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
+      <tbody>
+        {% for recommendation in recommendations %}
+        <tr>
+          <td>{{recommendation.section.letter}}: {{recommendation.section.title}}</td>
+          <td>{{recommendation.id}}</td>
+          <td>{{recommendation.title}}</td>
+          <td>
+            <!-- <button type="button" class="btn btn-primary">Update</button> -->
 
-      </table>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateModal{{ recommendation.id }}">View</button>
+            <div class="modal fade" id="updateModal{{ recommendation.id }}" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="updateModalLabel">
+                      Recommendation {{ recommendation.id}}
+                    </h5>
+                  </div>
+                  <div class="modal-body">
+                    {{ recommendation.text }}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
+
+  </div>
 
 </div>
-
-
-<!-- <div>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">Recommendation</th>
-        <th scope="col">Notes</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>3</td>
-        <td>
-          Countries should criminalise money laundering on the basis of the Vienna Convention and the Palermo Convention. Countries should apply the crime of money laundering to all serious offences, with a view to including the widest range of predicate offences.
-        </td>
-        <td>This is Recommendation 3</td>
-        <td>
-          <button type="button" class="btn btn-primary">Update</button>
-        </td>
-        <td>
-          <button type="button" class="btn btn-primary">Delete</button>
-        </td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>
-          Countries should criminalise terrorist financing on the basis of the Terrorist Financing Convention, and should criminalise not only the financing of terrorist acts but also the financing of terrorist organisations and individual terrorists even in the absence of a link to a specific terrorist act or acts. Countries should ensure that such offences are designated as money laundering predicate offences.
-        </td>
-        <td>This is recommendation 5</td>
-        <td>
-          <button type="button" class="btn btn-primary">Update</button>
-        </td>
-        <td>
-          <button type="button" class="btn btn-primary">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
 
 {% endblock %}
