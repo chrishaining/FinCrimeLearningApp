@@ -1,11 +1,13 @@
 from project import db
-from project.models import Section, Recommendation
+from project.models import Section, Recommendation, GlossaryTerm
 
 # I'm not sure why, but for this app I had to use db.create_all(). See https://flask-sqlalchemy.palletsprojects.com/en/2.x/binds/#creating-and-dropping-tables
 db.create_all()
 
 Section.query.delete()
 Recommendation.query.delete()
+GlossaryTerm.query.delete()
+
 
 
 sectionA = Section("A", "AML/CFT POLICIES AND COORDINATION")
@@ -67,6 +69,13 @@ db.session.add(recommendation2)
 db.session.add(recommendation3)
 
 db.session.add(recommendation4)
+
+
+glossaryTerm1 = GlossaryTerm(
+    name="NCA",
+    description="National Crime Agency")
+
+db.session.add(glossaryTerm1)
 
 
 

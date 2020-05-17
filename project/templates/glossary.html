@@ -70,4 +70,13 @@
 <button type="button" class="btn btn-primary">Add a new term</button>
 <!-- the button should link to a form, possibly in a modal.  -->
 
+<div>
+<h4>Glossary terms from the seeds file</h4>  
+<ul>
+  {% for term in glossaryTerms %}
+  <li>{{term.name}}: {{term.description}}</li>
+  {% endfor %}
+</ul>
+</div>
+
 {% endblock %}

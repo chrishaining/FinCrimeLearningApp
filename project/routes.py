@@ -1,5 +1,5 @@
 from project import app
-from project.models import Section, Recommendation
+from project.models import Section, Recommendation, GlossaryTerm
 from flask import render_template
 
 
@@ -15,4 +15,5 @@ def fatf_recommendations():
 
 @app.route('/glossary')
 def glossary():
-    return render_template('glossary.html')
+    glossaryTerms = GlossaryTerm.query.all()
+    return render_template('glossary.html', glossaryTerms=glossaryTerms)

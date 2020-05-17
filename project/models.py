@@ -1,6 +1,10 @@
 from project import db
 # from flask_login import UserMixin
 
+
+#############
+## SECTION ##
+#############
 class Section(db.Model):
         __tablename__ = 'sections'
 
@@ -16,8 +20,9 @@ class Section(db.Model):
         def __repr__(self):
             return f"Section {self.letter}"
 
-
-###### RECOMMENDATION
+####################
+## RECOMMENDATION ##
+####################
 class Recommendation(db.Model):
     __tablename__ = 'recommendations'
     id = db.Column(db.Integer, primary_key=True)
@@ -37,3 +42,21 @@ class Recommendation(db.Model):
         return f"Recommendation {self.id}"
 
 # a decision - do I include the subheadings within sections? Not all sections include subheadings, and I'm not yet convinced how useful these subheadings will be.
+
+
+####################
+## GLOSSARY TERM ##
+####################
+class GlossaryTerm(db.Model):
+    __tablename__ = 'glossaryterms'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), nullable=False, index=True)
+    description = db.Column(db.Text, nullable=False)
+    Notes = db.Column(db.Text)
+
+    def __init__(self, name, description):
+        self.name = name
+        self.description = description
+
+    def __repr__(self):
+        return f"Glossary term: {self.term}"
