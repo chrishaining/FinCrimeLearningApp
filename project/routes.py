@@ -63,3 +63,16 @@ def update_glossary_term(glossary_term_id):
         form.notes.data = glossary_term.notes
 
     return render_template('create_glossary_term.html', form=form)
+
+
+############################
+### delete glossary term ###
+############################
+@app.route('/<int:glossary_term_id>/delete', methods=['GET', 'POST'])
+def delete_glossary_term(glossary_term_id):
+
+    glossary_term = GlossaryTerm.query.get_or_404(glossary_term_id)
+
+    db.session.delete(glossary_term)
+    db.session.commit()
+    return redirect(url_for('glossary'))

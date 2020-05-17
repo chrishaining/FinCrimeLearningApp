@@ -19,23 +19,36 @@
       </tr>
     </thead>
     <tbody>
-      {% for term in glossaryTerms %}
 
+      {% for term in glossaryTerms %}
       <tr>
         <td> {{ term.name }} </td>
         <td> {{ term.description }} </td>
         <td> {{ term.notes }} </td>
         <td>
-          <!-- <button type="button" class="btn btn-primary">Update</button> -->
-
-
-            <a class="btn btn-primary" href="{{ url_for('update_glossary_term', glossary_term_id=term.id) }}">Update</a>
-
-
-
+          <a class="btn btn-primary" href="{{ url_for('update_glossary_term', glossary_term_id=term.id) }}">Update</a>
         </td>
         <td>
-          <button type="button" class="btn btn-primary">Delete</button>
+            <button type="button" class="btn btn-danger" data-toggle='modal' data-target="#del_modal{{term.id}}">Delete</button>
+            <div class="modal" tabindex="-1" role="dialog" id="del_modal{{term.id}}">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Delete?</h5>
+                  </div>
+                  <div class="modal-body">
+                    <p>Are you sure you want to delete the entry <i>{{ term.name }}</i>?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                    <form action="{{ url_for('delete_glossary_term', glossary_term_id=term.id) }}" method="POST">
+                      <input class="btn btn-danger" type="submit" value="Delete">
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
         </td>
       </tr>
       {% endfor %}
