@@ -16,16 +16,22 @@
 </head>
 <body>
   <ul class='nav'>
+
     <li class='nav-link'>
       <a href="{{ url_for('home') }}">Home</a>
     </li>
+
     <li class='nav-link'>
       <a href="{{ url_for('fatf_recommendations')}}">FATF Recommendations</a>
     </li>
+
     <li class='nav-link'>
       <a href="{{ url_for('glossary')}}">Glossary</a>
     </li>
 
+    <li class='nav-link'>
+      <a href="{{ url_for('create_glossary_term')}}">Create a New Glossary Term</a>
+    </li>
 
   </ul>
 

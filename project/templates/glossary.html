@@ -11,7 +11,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">Term</th>
+        <th scope="col">Name</th>
         <th scope="col">Description</th>
         <th scope="col">Notes</th>
         <th scope="col"></th>
@@ -19,10 +19,12 @@
       </tr>
     </thead>
     <tbody>
+      {% for term in glossaryTerms %}
+
       <tr>
-        <td>FATF</td>
-        <td>Financial Action Task Force</td>
-        <td>The international body that offers guidance on AML and CFT</td>
+        <td> {{ term.name }} </td>
+        <td> {{ term.description }} </td>
+        <td> {{ term.notes }} </td>
         <td>
           <button type="button" class="btn btn-primary">Update</button>
         </td>
@@ -30,53 +32,12 @@
           <button type="button" class="btn btn-primary">Delete</button>
         </td>
       </tr>
-      <tr>
-        <td>JMLSG</td>
-        <td>Joint Money Laundering Steering Group</td>
-        <td>A UK-based group that offers guidance on AML</td>
-        <td>
-          <button type="button" class="btn btn-primary">Update</button>
-        </td>
-        <td>
-          <button type="button" class="btn btn-primary">Delete</button>
-        </td>
-      </tr>
-      <tr>
-        <td>UNODC</td>
-        <td>United Nations Office on Drugs and Crime</td>
-        <td>Offers research, guidance and support to countries in relation to tackling drugs and crime</td>
-        <td>
-          <button type="button" class="btn btn-primary">Update</button>
-        </td>
-        <td>
-          <button type="button" class="btn btn-primary">Delete</button>
-        </td>
-      </tr>
-      <tr>
-        <td>cuckoo smurfing</td>
-        <td>Using the account of an unwitting person to launder money</td>
-        <td>Could put a hyperlink here.</td>
-        <td>
-          <button type="button" class="btn btn-primary">Update</button>
-        </td>
-        <td>
-          <button type="button" class="btn btn-primary">Delete</button>
-        </td>
-      </tr>
+      {% endfor %}
+      
     </tbody>
   </table>
 </div>
 
-<button type="button" class="btn btn-primary">Add a new term</button>
-<!-- the button should link to a form, possibly in a modal.  -->
 
-<div>
-<h4>Glossary terms from the seeds file</h4>  
-<ul>
-  {% for term in glossaryTerms %}
-  <li>{{term.name}}: {{term.description}}</li>
-  {% endfor %}
-</ul>
-</div>
 
 {% endblock %}

@@ -75,7 +75,45 @@ glossaryTerm1 = GlossaryTerm(
     name="NCA",
     description="National Crime Agency")
 
+glossaryTerm2 = GlossaryTerm(
+    name="JMLSG",
+    description="Joint Money Laundering Steering Group",
+    notes="	A UK-based group that offers guidance on AML"
+)
+
+glossaryTerm3 = GlossaryTerm(
+    name="UNODC",
+    description="United Nations Office on Drugs and Crime",
+    notes="Offers research, guidance and support to countries in relation to tackling drugs and crime"
+)
+
+
+glossaryTerm4 = GlossaryTerm(
+    name="FATF",
+    description="Financial Action Task Force",
+    notes="The international body that offers guidance on AML and CFT"
+)
+
+
+glossaryTerm5 = GlossaryTerm(
+    name="cuckoo smurfing",
+    description="Using the account of an unwitting person to launder money"
+)
+
+# glossaryTerm5 = GlossaryTerm(
+#     name="",
+#     description="",
+#     notes=""
+# )
+
+
 db.session.add(glossaryTerm1)
+db.session.add(glossaryTerm2)
+db.session.add(glossaryTerm3)
+db.session.add(glossaryTerm4)
+db.session.add(glossaryTerm5)
+
+
 
 
 

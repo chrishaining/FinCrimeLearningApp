@@ -52,11 +52,12 @@ class GlossaryTerm(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), nullable=False, index=True)
     description = db.Column(db.Text, nullable=False)
-    Notes = db.Column(db.Text)
+    notes = db.Column(db.Text, default="Add notes") # I don't think the default does anything here.
 
-    def __init__(self, name, description):
+    def __init__(self, name, description, notes="add notes"):
         self.name = name
         self.description = description
+        self.notes = notes
 
     def __repr__(self):
         return f"Glossary term: {self.term}"
