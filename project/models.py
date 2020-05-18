@@ -1,4 +1,4 @@
-from project import db
+from project import db, wa
 # from flask_login import UserMixin
 
 
@@ -7,6 +7,8 @@ from project import db
 #############
 class Section(db.Model):
         __tablename__ = 'sections'
+
+        __searchable__ = ['letter', 'title']
 
         id = db.Column(db.Integer, primary_key=True)
         letter = db.Column(db.CHAR, nullable=False, index=True)
@@ -25,6 +27,9 @@ class Section(db.Model):
 ####################
 class Recommendation(db.Model):
     __tablename__ = 'recommendations'
+
+    __searchable__ = ['id', 'title', 'text']
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(128), nullable=False, index=True)
     text = db.Column(db.Text, nullable=False)
@@ -49,6 +54,9 @@ class Recommendation(db.Model):
 ####################
 class GlossaryTerm(db.Model):
     __tablename__ = 'glossaryterms'
+
+    __searchable__ = ['name', 'description', 'notes']
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), nullable=False, index=True)
     description = db.Column(db.Text, nullable=False)

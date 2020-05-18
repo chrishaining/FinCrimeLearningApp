@@ -1,7 +1,8 @@
-from project import app, db
+from project import app, db, wa
 from project.models import Section, Recommendation, GlossaryTerm
 from flask import render_template, redirect, url_for, request
 from project.forms import GlossaryTermForm #, RecommendationForm
+from
 
 ############################
 ### show homepage ###
@@ -17,6 +18,11 @@ def home():
 def fatf_recommendations():
     recommendations = Recommendation.query.all()
     return render_template('fatf_recommendations.html', recommendations=recommendations)
+
+
+def search():
+    results = Recommendation.query.whoosh_search(request.args.get('query')).all()
+    return render_template('fatf_recommendations.html', results=results)
 
 ###########################
 ### edit recommendation ###
