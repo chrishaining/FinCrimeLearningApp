@@ -1,25 +1,53 @@
 from project import app, db
 from project.models import Section, Recommendation, GlossaryTerm
 from flask import render_template, redirect, url_for, request
-from project.forms import GlossaryTermForm
+from project.forms import GlossaryTermForm #, RecommendationForm
 
-
+############################
+### show homepage ###
+############################
 @app.route('/')
 def home():
     return render_template('home.html')
 
-
+############################
+### show recommendations ###
+############################
 @app.route('/fatf_recommendations')
 def fatf_recommendations():
     recommendations = Recommendation.query.all()
     return render_template('fatf_recommendations.html', recommendations=recommendations)
 
+###########################
+### edit recommendation ###
+###########################
+# @app.route('/<recommendation_id>/update', methods=['GET', 'POST'])
+# def update_recommendation(recommendation_id):
+#
+#     recommendation = Recommendation.query.get_or_404(recommendation_id)
+#
+#     form = RecommendationForm()
+#
+#     if form.validate_on_submit():
+#         glossary_term.title = form.title.data
+#         glossary_term.text = form.text.data
+#         db.session.commit()
+#         return redirect(url_for('fatf_recommendations', recommendation_id=recommendation_id))
+#
+#     elif request.method == 'GET':
+#         form.title.data = recommendation.title
+#         form.text.data = recommendation.text
+#
+#     return render_template('fatf_recommendations.html', form=form)
+
+
+#####################
+### show glossary ###
+#####################
 @app.route('/glossary')
 def glossary():
     glossaryTerms = GlossaryTerm.query.all()
     return render_template('glossary.html', glossaryTerms=glossaryTerms)
-
-
 
 ############################
 ### create glossary term ###
