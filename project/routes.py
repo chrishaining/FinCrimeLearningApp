@@ -18,6 +18,25 @@ def fatf_recommendations():
     recommendations = Recommendation.query.all()
     return render_template('fatf_recommendations.html', recommendations=recommendations)
 
+##############################
+### search recommendations ###
+##############################
+@app.route("/fatf_recommendations", methods=['GET'])
+def search():
+    recommendations = Recommendation.query.all()
+    query = request.args.get("word")
+    if not query or query.lower() not in recommendations:
+        result = "Sorry"
+    else:
+        result = query.lower()
+    return redirect(url_for('fatf_recommendations', result=result))
+
+    # return render_template("fatf_recommendations.html", result=result)
+# should I have a redirect to a results page?
+# Or should this just be a filter? db.session.query.filter(word in recommendations).
+# Model.query.filter(Model.field.ilike(expr))
+# Model.query.filter(Model.columnName.contains('sub_string'))
+
 ###########################
 ### edit recommendation ###
 ###########################
