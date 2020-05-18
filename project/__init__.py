@@ -2,7 +2,6 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os
-# import flask.ext
 
 app = Flask(__name__)
 
@@ -16,18 +15,17 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'da
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.db')
 
 
-
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-import flask_whooshalchemy as wa
-# configure whoosh
-app.config['WHOOSH_BASE'] = 'whoosh'
-
-# create an index for whoosh. I'm not sure where this should go - models.py? Or can I just put it here and import the models here?
-from project.models import Section, Recommendation, GlossaryTerm
-wa.whoosh_index(app, Section, Recommendation, GlossaryTerm)
 
 db = SQLAlchemy(app)
 Migrate(app,db)
+
+from whoosh.analysis import StemmingAnalyzer
+import flask_whooshalchemy
+# set the location for the whoosh index
+app.config['WHOOSH_BASE'] = 'whoosh'
+# set the global analyzer, defaults to StemmingAnalyzer.
+app.config['WHOOSH_ANALYZER'] = StemmingAnalyzer()
+
 
 from project import routes

@@ -1,8 +1,11 @@
-from project import app, db, wa
+from project import app, db
 from project.models import Section, Recommendation, GlossaryTerm
 from flask import render_template, redirect, url_for, request
 from project.forms import GlossaryTermForm #, RecommendationForm
-from
+
+
+from whoosh.analysis import StemmingAnalyzer, SimpleAnalyzer
+import flask_whooshalchemy
 
 ############################
 ### show homepage ###
@@ -19,9 +22,10 @@ def fatf_recommendations():
     recommendations = Recommendation.query.all()
     return render_template('fatf_recommendations.html', recommendations=recommendations)
 
-
+@app.route('/search', methods=['GET'])
 def search():
-    results = Recommendation.query.whoosh_search(request.args.get('query')).all()
+    # results = Recommendation.query.whoosh_search(word)
+    results = Recommendation.query.whoosh_search(request.args.get('query')).all
     return render_template('fatf_recommendations.html', results=results)
 
 ###########################
