@@ -8,12 +8,32 @@
 
 <div class="container">
 
-  <div class="row">
+  <!-- <div class="row">
     <form class="form-inline my-2 my-lg-0" method="GET" action="search">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
-  </div>
+  </div> -->
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class=flashes>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  {% from "_formhelpers.html" import render_field %}
+  <form method=post>
+    <dl>
+      <p>
+      {{ render_field(form.search) }}
+    </dl>
+    <p><input type=submit value=Search>
+  </form>
+
 
   <div class="row">
     <table class="table table-striped table-bordered table-responsive">

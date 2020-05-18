@@ -19,13 +19,13 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'da
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-import flask_whooshalchemy as wa
+# import flask_whooshalchemy as wa
 # configure whoosh
-app.config['WHOOSH_BASE'] = 'whoosh'
+# app.config['WHOOSH_BASE'] = 'whoosh'
 
 # create an index for whoosh. I'm not sure where this should go - models.py? Or can I just put it here and import the models here?
-from project.models import Section, Recommendation, GlossaryTerm
-wa.whoosh_index(app, Section, Recommendation, GlossaryTerm)
+# from project.models import Section, Recommendation, GlossaryTerm
+# wa.whoosh_index(app, Section, Recommendation, GlossaryTerm)
 
 db = SQLAlchemy(app)
 Migrate(app,db)

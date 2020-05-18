@@ -1,8 +1,26 @@
-from project import app, db, wa
+from project import app, db
 from project.models import Section, Recommendation, GlossaryTerm
-from flask import render_template, redirect, url_for, request
-from project.forms import GlossaryTermForm #, RecommendationForm
-from
+from flask import render_template, redirect, url_for, request, flash
+from project.forms import GlossaryTermForm, SearchForm #, RecommendationForm
+
+
+# db_setup.py
+
+# from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
+# from sqlalchemy.ext.declarative import declarative_base
+
+# engine = create_engine('sqlite:///mymusic.db', convert_unicode=True)
+db_session = scoped_session(sessionmaker(autocommit=False,
+                                         autoflush=False))
+# Base = declarative_base()
+# Base.query = db_session.query_property()
+
+# def init_db():
+#     import models
+#     Base.metadata.create_all(bind=engine)
+
+
 
 ############################
 ### show homepage ###
@@ -17,12 +35,31 @@ def home():
 @app.route('/fatf_recommendations')
 def fatf_recommendations():
     recommendations = Recommendation.query.all()
-    return render_template('fatf_recommendations.html', recommendations=recommendations)
+    search = SearchForm(request.form)
+    if request.method == 'POST':
+        return search_results(search)
+    return render_template('fatf_recommendations.html', recommendations=recommendations, form=search)
+
+@app.route('/results')
+def search_results(search):
+    results = []
+    search_string = search.data['search']
+    if search.data['search'] == '':
+        qry = db_session.query(Recommendation)
+        results = qry.all()
+    if not results:
+        flash('No results found!')
+        return redirect('/fatf_recommendation')
+    else:
+        # display results
+        return render_template('results.html', results=results)
 
 
-def search():
-    results = Recommendation.query.whoosh_search(request.args.get('query')).all()
-    return render_template('fatf_recommendations.html', results=results)
+
+
+# def search():
+#     results = Recommendation.query.whoosh_search(request.args.get('query')).all()
+#     return render_template('fatf_recommendations.html', results=results)
 
 ###########################
 ### edit recommendation ###
